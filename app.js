@@ -36,21 +36,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 function news() {
     return __awaiter(this, void 0, void 0, function () {
-        var limit, response, data, newsArticle;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        var limit, response, _a, data, links, newsArticle;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
                     limit = 5;
                     return [4 /*yield*/, fetch("https://brottsplatskartan.se/api/events/?location=boras&limit=".concat(limit))];
                 case 1:
-                    response = _a.sent();
+                    response = _b.sent();
                     return [4 /*yield*/, response.json()];
                 case 2:
-                    data = _a.sent();
-                    console.log(data.data);
-                    newsArticle = document.querySelector('.news-article');
+                    _a = (_b.sent()), data = _a.data, links = _a.links;
+                    console.log(data, links);
+                    newsArticle = document.querySelector(".news-article");
                     newsArticle.innerHTML = "";
-                    data.data.map(function (obj) {
+                    data.map(function (obj) {
                         newsArticle.innerHTML += "<div><img src=\"".concat(obj.image, "\" alt=\"\"><br> Tid:").concat(obj.content_teaser, " <br> <button onclick=\"location.href='").concat(obj.external_source_link, "'\" class=\"hej\">l\u00E4s mer</button></div>");
                     });
                     return [2 /*return*/, data];
@@ -58,5 +58,4 @@ function news() {
         });
     });
 }
-;
 news();
